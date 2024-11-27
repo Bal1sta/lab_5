@@ -57,4 +57,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./physics   # Убедитесь, что путь правильный к вашему исполняемому файлу!
           asset_name: physics       # Имя артефакта в релизе
-          asset_content_type: application/octet-stream  # Тип контента для исполняемого файла
+          asset_content_type: application/octet-stream  # Тип контента для исполняемого файла 
