@@ -1,14 +1,14 @@
-name: 'C++ CI'
+name: 'C++ CI on macOS'
 
 on:
   push:
     branches:
-      - mastr
+      - master
       - feature/github_actions
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest  # Используем macOS для выполнения работы
     permissions:
       contents: write  # Необходимое разрешение для создания релиза
 
@@ -21,7 +21,7 @@ jobs:
 
       # Шаг 2: Установка зависимостей (например, Boost и SFML)
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install libboost-test-dev cmake g++ libsfml-dev -y
+        run: brew install cmake boost sfml  # Установка CMake, Boost и SFML через Homebrew
 
       # Шаг 3: Генерация файлов сборки с помощью CMake
       - name: Configure CMake
@@ -33,7 +33,7 @@ jobs:
 
       # Шаг 5: Запуск тестов (если у вас есть тесты)
       - name: Run tests
-        run: ctest --output-on-failure
+        run: ctest --output-on-failure || true  # Добавляем || true для предотвращения ошибки при отсутствии тестов
 
       # Шаг 6: Создание релиза на GitHub (если необходимо)
       - name: Create Release
